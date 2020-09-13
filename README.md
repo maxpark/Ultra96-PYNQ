@@ -120,6 +120,15 @@ PL 에서 구동하는 주파수  일정 속도를 넘어서면 생기는 파워
   - host컴의 explore 에서  주소  192.168.0.3 입력
   - 접속 password  "xilinx"
 
+8. 시작 프로그램에 등록
+  ```
+  $ vi .bashrc
+  
+  (아래 내용 입력)
+  sudo wpa_supplicant -B -i wlan0 -c /etc/wpa_supplicant/wpa_supplicant.conf -D wext
+  sudo dhclient wlan0
+  ```
+
 **Enjoy ~~ **
 
 
