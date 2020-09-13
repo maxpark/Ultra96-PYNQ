@@ -13,7 +13,30 @@ Supports Ultra96 v1 and v2, ZCU104 and ZCU111,
 
 ![alt tag](./pynq-dpu.jpeg)
   
+**=====================================================================================================**
+## Modifying the Ultra96v2 board to measure energy usag
+말 그대로,  power 소모량을 측정하기 위해  PYNQ 2.5 이미지에 손대기 !!
+
+(참고) https://github.com/maxpark/dac_sdc_2020/tree/master/support/measure_power
+
+- `restore_image.sh` 파일을 실행하면, 원하는걸 하나씩 한다고 하는데,, uSD 드라이브 접근 위치 맞추고 하는게 귀찮을..  
+- 그냥 해당되는 파일 3개 replace 하자  
+  uSD 카드에 PYNQ 2.5 이미지를 Etcher 등으로 구워 넣고 보면,,  uSD 드라이브가 2개 잡힌다..  작은거 . 큰거  
+  작게 잡힌것에 BOOT.bin / image.ub 파일이 보일것이고,  크게 잡힌것에는 linux 관련 파일들이 있을 것이다.  
+- DAC 경진 대회에서 친절하게.. 파일을 제공해주신다..  
+  https://github.com/maxpark/dac_sdc_2020/tree/master/support/measure_power
+  받아 두자.
   
+  ```
+  DAC에서 제공하는 파일로 교체
+  
+  1. BOOT.bin
+  2. image.ub
+  3. ultra96.conf   (u96 보드의  /etc/sensors.d/ultra96.conf 파일 교체)
+  ```
+PL 에서 구동하는 주파수  일정 속도를 넘어서면 생기는 파워 관련 문제를 패치한다고 하는데..  
+결과는 확인이 필요하다.
+
   
 ```
 ==========================================================================================================
