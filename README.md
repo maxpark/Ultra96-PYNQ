@@ -12,8 +12,13 @@ Supports Ultra96 v1 and v2, ZCU104 and ZCU111,
 [click here for how to get started!](https://www.hackster.io/wadulisi/easy-ai-with-python-and-pynq-dd4822)
 
 ![alt tag](./pynq-dpu.jpeg)
-
-
+  
+  
+  
+```
+==========================================================================================================
+```
+**=====================================================================================================**
 
 ## Configuration of the Ultra96v2 Wifi Network
   - Ultra96v2 보드에 PYNQ 2.5 가 설치되어 보드가 부팅이 된 이후  
@@ -93,6 +98,15 @@ Supports Ultra96 v1 and v2, ZCU104 and ZCU111,
   - 접속 password  "xilinx"
 
 **Enjoy ~~ **
+
+
+  
+**=====================================================================================================**
+```
+==========================================================================================================
+```
+
+  
 
 
 ## Build your own PYNQ SD Image for Ultra96 V1/V2 (this is optional for advanced users)
