@@ -8,9 +8,92 @@ Click the releases tab above or [click here to obtain SD card images and instruc
 
 ## NEW: Xilinx Vitis AI hardware accelerated inference for PYNQ >= v2.5
 
-Supports Ultra96 v1 and v2, ZCU104 and ZCU111, [click here for how to get started!](https://www.hackster.io/wadulisi/easy-ai-with-python-and-pynq-dd4822)
+Supports Ultra96 v1 and v2, ZCU104 and ZCU111,  
+[click here for how to get started!](https://www.hackster.io/wadulisi/easy-ai-with-python-and-pynq-dd4822)
 
 ![alt tag](./pynq-dpu.jpeg)
+
+
+
+## Configuration of the Ultra96v2 Wifi Network
+  - Ultra96v2 보드에 PYNQ 2.5 가 설치되어 보드가 부팅이 된 이후  
+    작업 컴터에 터미널로 u96v2 보드의 jtag usb 보드에 연결된 이후 터미널에서 아래 작업을 실시  
+
+1. 무선 네트웍 패키지 설치  
+   (PYNQ v2.5 에는 기본 설치 되어 있는 듯)
+  ```
+  $ sudo apt-get install wireless-tools wpasupplicant
+  ```
+2. 네트워크 상태 확인  
+   (아마도 기본 PYNQ v2.5 에 당연히 개인 접속 환경과 다르므로 제대로 안나오겠지..)
+  ```
+  $ ifconfig
+  $ iwconfig
+  ```
+3. IP Configuration
+   (고정 IP로 192.168.0.200 으로 한다고 하자. **jupyter notebook** ip 는 192.168.0.3 이 될 것이다)
+  - ip 설정  
+  ```
+  $ sudo vi /etc/network/interfaces
+  ```
+    interfaces 파일 안에 내용 (U96 wifi 어뎁터: wlan0, 공유기 ssid를 "max_home"  pass "abcd")
+    ```
+    audo wlan0
+    iface wlan0 inet static
+      address 192.168.0.200
+      network 255.255.255.0
+      gateway 192.168.0.1
+      dns-nameservers 8.8.8.8 8.8.4.4
+      wpa-ssid "max_home"
+      wps-psk "abcd"
+    ```
+4. 인터페이스 활성화
+  ```
+  $ sudo ifdown wlan0
+  $ sudo ifup wlan0
+  ```
+  wlan0 올라오는게 잘 안 될수 있다.
+
+5. wpa_supplicant.conf 설정
+
+  - wpa_supplicant.conf 파일 작성
+    ```
+    $ vi /etc/wpa_supplicant/wpa_supplicant.conf
+    
+      (입력 내용)
+      network = {
+        ssid="max_home"
+        psk="abcd"
+      }
+
+    또는
+    $ wpa_passphrase max_home > /etc/wpa_supplicant/wpa_supplicant.conf <ENTER를 입력>
+      <PASSWORD를 입력 - "abcd">
+    $ less /etc/wpa_supplicant/wpa_supplicant.conf
+      (내용 확인)
+      network={
+        ssid="max_home"
+        #psk="abcd"
+        psd=8ada1f8d????????????????????581b4cd7a72864cea685b1a7f
+      }
+    ```
+  - wext를 통하여 wireless 확장 사용 설정
+    ```
+    $ sudo wpa_supplicant -B -i wlan0 -c /etc/wpa_supplicant/wpa_supplicant.conf -D wext
+    $ sudo dhclient wlan0
+    ```
+
+6. wireless network 확인
+  ```
+  $ ifconfig
+  $ iwconfig
+  ```
+7. jupyter notebook 접속 확인
+  - host컴의 explore 에서  주소  192.168.0.3 입력
+  - 접속 password  "xilinx"
+
+**Enjoy ~~ **
+
 
 ## Build your own PYNQ SD Image for Ultra96 V1/V2 (this is optional for advanced users)
 
