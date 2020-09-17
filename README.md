@@ -14,7 +14,7 @@ Supports Ultra96 v1 and v2, ZCU104 and ZCU111,
 ![alt tag](./pynq-dpu.jpeg)
   
 **=====================================================================================================**
-## Modifying the Ultra96v2 board to measure energy usag
+## Modifying the Ultra96v2 board to measure energy usage
 말 그대로,  power 소모량을 측정하기 위해  PYNQ 2.5 이미지에 손대기 !!
 
 (참고) https://github.com/maxpark/dac_sdc_2020/tree/master/support/measure_power
