@@ -66,7 +66,7 @@ PL 에서 구동하는 주파수  일정 속도를 넘어서면 생기는 파워
   ```
     interfaces 파일 안에 내용 (U96 wifi 어뎁터: wlan0, 공유기 ssid를 "max_home"  pass "abcd")
     ```
-    audo wlan0
+    auto wlan0
     iface wlan0 inet static
       address 192.168.0.200
       network 255.255.255.0
