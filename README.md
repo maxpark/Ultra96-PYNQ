@@ -75,6 +75,16 @@ PL 에서 구동하는 주파수  일정 속도를 넘어서면 생기는 파워
       wpa-ssid "max_home"
       wps-psk "abcd"
     ```
+3.1  wlan0 file 확인
+  ```
+  $ vi /etc/network/interfaces.d/wlan0
+    iface wlan0 inet dhcp
+      wireless_mode managed
+      wireless_essid any
+      wpa-driver wext
+      wpa-conf /etc/wpa_supplicant.conf
+  ```
+
 4. 인터페이스 활성화
   ```
   $ sudo ifdown wlan0
